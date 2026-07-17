@@ -1,6 +1,6 @@
 <x-layouts.app>
     <header class="page__header">
-        <h1 class="page__title">Welcome back, <span>Steven</span> 👋</h1>
+        <h1 class="page__title">Welcome back, <span>{{ Auth::user()->name }}</span> 👋</h1>
     </header>
 
     <div class="page__body">

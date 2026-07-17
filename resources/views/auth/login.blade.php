@@ -41,6 +41,7 @@
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
+                    
                     <div class="field">
                         <label for="email" :value="__('Email')" class="field__label">Email</label>
                         <div class="input-group input-group--lg">
@@ -53,14 +54,17 @@
                                             d="m6 8l2.159 1.8c1.837 1.53 2.755 2.295 3.841 2.295s2.005-.765 3.841-2.296L18 8" />
                                     </g>
                                 </svg></span>
-                            <input id="email" class="input" type="email" name="email" :value="old('email')" required autofocus autocomplete="username"
-                                autocomplete="email" />
+                            <input id="email" class="input @error('email') border-red-500 @enderror" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                         </div>
+                        @error('email')
+                            <span class="text-sm text-red-500 mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
+                    <br>
 
                     <div class="field">
                         <div class="flex items-center justify-between gap-2">
-                            <label for="password" :value="__('Password')" class="field__label">Password</label>
+                            <label for="loginPassword" :value="__('Password')" class="field__label">Password</label>
                         </div>
                         <div class="input-group input-group--lg">
                             <span class="input-group__text"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -72,8 +76,7 @@
                                         <path stroke-linecap="round" d="M6 10V8a6 6 0 1 1 12 0v2" />
                                     </g>
                                 </svg></span>
-                            <input type="password" class="input" id="loginPassword" placeholder="••••••••••"
-                                autocomplete="current-password" />
+                            <input type="password" class="input @error('password') border-red-500 @enderror" id="loginPassword" name="password" placeholder="••••••••••" required autocomplete="current-password" />
                             <button type="button" class="input-group__text" data-password-toggle
                                 aria-controls="loginPassword" aria-label="Show password" aria-pressed="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
@@ -86,13 +89,18 @@
                                 </svg>
                             </button>
                         </div>
+                        @error('password')
+                            <span class="text-sm text-red-500 mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
-
+                    <br>
+                    
                     <div class="field__item">
-                        <input class="checkbox" type="checkbox" id="loginRemember" />
+                        <input class="checkbox" type="checkbox" id="loginRemember" name="remember" />
                         <label class="field__label" for="loginRemember">Keep me signed in</label>
                     </div>
-
+                    <br>
+                    
                     <button type="submit" class="button button--primary button--block button--lg">Sign in
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
                             aria-hidden="true">
@@ -102,7 +110,7 @@
                 </form>
 
                 <p class="text-center text-sm text-muted-foreground">
-                    New to Meridian? <a href="/meridian/register.html" class="link">Create an account</a>
+                    New to Meridian? <a href="{{ route('register') }}" class="link">Create an account</a>
                 </p>
             </div>
         </section>

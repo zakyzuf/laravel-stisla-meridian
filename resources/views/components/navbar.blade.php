@@ -222,7 +222,7 @@
                 <div class="menu__popup w-48" id="topbarUser" data-stisla-menu role="menu" data-state="closed">
                     <div class="menu__group" role="group" aria-labelledby="topbarUserHead">
                         <h3 class="menu__group-label" id="topbarUserHead">{{ Auth::user()->name }}</h3>
-                        <a href="/meridian/settings.html" class="menu__item" role="menuitem"><svg
+                        <a href="{{ route('profile.edit') }}" class="menu__item" role="menuitem"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
                                 aria-hidden="true">
                                 <g fill="none" stroke="currentColor" stroke-width="1.5">
